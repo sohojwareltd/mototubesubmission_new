@@ -481,7 +481,7 @@
                                                                                     <td class="qe_btm20" valign="top"
                                                                                         align="left">
                                                                                         @if ($video->signature)
-                                                                                            <img src="{{ Storage::disk('public')->url($video->signature) }}"
+                                                                                            <img src="{{ $video->signatureUrl() }}"
                                                                                                 alt="signature"
                                                                                                 width="141"
                                                                                                 style="display:block; max-width:141px;"
@@ -519,7 +519,7 @@
                                                                                     <td class="font11" valign="top"
                                                                                         align="left"
                                                                                         style="font-family: 'Poppins', arial, sans-serif;font-size: 13px;font-weight: 400;line-height: 21px;     color: #0000ee;">
-                                                                                        <a href="{{ Storage::disk('public')->url($video->video) }}"
+                                                                                        <a href="{{ $video->videoUrl() }}"
                                                                                             target="_blank"
                                                                                             style="text-decoration:underline; color:#0000ee;">Download the video</a></td>
                                                                                 </tr>

@@ -42,7 +42,7 @@
                                         - Video Title: {{ $video->title }}<br>
                                         - Video Description: {{ $video->description }}<br>
                                         - Content uploaded to our server link:
-                                        {{ Storage::disk('public')->url($video->video) }}<br>
+                                        {{ $video->videoUrl() }}<br>
                                     </div>
                                 </td>
                             </tr>

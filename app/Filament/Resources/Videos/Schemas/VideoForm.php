@@ -35,7 +35,7 @@ class VideoForm
                 Section::make('Video')
                     ->columns(2)
                     ->schema([
-                        FileUpload::make('video')->disk('public')->directory('videos')->required(),
+                        FileUpload::make('video')->disk('s3')->directory('videos')->required(),
                         TextInput::make('video_url')->label('Video URL')->url()->maxLength(255),
                         TextInput::make('when_filmed')->label('When Filmed')->maxLength(30),
                         Textarea::make('description')->required()->maxLength(3000)->columnSpanFull(),
@@ -99,7 +99,7 @@ class VideoForm
                 Section::make('Signature & Metadata')
                     ->columns(2)
                     ->schema([
-                        FileUpload::make('signature')->disk('public')->directory('signature')->image(),
+                        FileUpload::make('signature')->disk('s3')->directory('signature')->image(),
                         TextInput::make('user_ip')->label('User IP')->disabled(),
                     ]),
             ]);

@@ -80,7 +80,7 @@ class PageController extends Controller
         $file = $request->file('video');
         $name = Str::random(20).'.'.$file->getClientOriginalExtension();
         $path = $request->file('video')->storeAs(
-            'videos',$name,config('filesystems.default')
+            'videos',$name,'s3'
         );
         return $path;
     }
@@ -91,7 +91,7 @@ class PageController extends Controller
         $image_type = $image_type_aux[1];
         $image_base64 = base64_decode($image_parts[1]);
         $fileName = 'signature/' . uniqid() . '.' . $image_type;
-        Storage::disk('public')->put($fileName, $image_base64);
+        Storage::disk('s3')->put($fileName, $image_base64);
         return $fileName;
     }
 

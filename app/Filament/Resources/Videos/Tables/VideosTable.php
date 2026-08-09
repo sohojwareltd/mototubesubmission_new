@@ -2,9 +2,11 @@
 
 namespace App\Filament\Resources\Videos\Tables;
 
+use App\Models\Video;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
+use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
@@ -15,12 +17,11 @@ class VideosTable
         return $table
             ->columns([
                 TextColumn::make('id')->sortable(),
-                TextColumn::make('first_name')->searchable(),
-                TextColumn::make('last_name')->searchable(),
+                TextColumn::make('full_name')
+                    ->label('Name')
+                    ->state(fn (Video $record): string => trim("{$record->first_name} {$record->last_name}"))
+                    ->searchable(['first_name', 'last_name']),
                 TextColumn::make('email')->searchable(),
-                TextColumn::make('city')->searchable(),
-                TextColumn::make('state'),
-                TextColumn::make('country'),
                 TextColumn::make('person_who_filmed')->label('Filmed By'),
                 TextColumn::make('created_at')->dateTime()->sortable(),
             ])
@@ -29,6 +30,7 @@ class VideosTable
                 //
             ])
             ->recordActions([
+                ViewAction::make(),
                 EditAction::make(),
             ])
             ->toolbarActions([
